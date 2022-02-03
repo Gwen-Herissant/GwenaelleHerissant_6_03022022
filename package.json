@@ -1,0 +1,22 @@
+{
+  "name": "project6-fisheye",
+  "version": "1.0.0",
+  "description": "[OC] P6 - FishEye accessible website",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Gwen-Herissant/GwenaelleHerissant_6_03022022.git"
+  },
+  "author": "Gwenaelle Herissant <g.herissant@gmail.com>",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Gwen-Herissant/GwenaelleHerissant_6_03022022/issues"
+  },
+  "homepage": "https://github.com/Gwen-Herissant/GwenaelleHerissant_6_03022022#readme",
+  "devDependencies": {
+    "eslint": "^8.8.0"
+  }
+}
