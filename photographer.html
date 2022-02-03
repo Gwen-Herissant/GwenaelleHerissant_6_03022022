@@ -38,7 +38,7 @@
     <!--grille d'images du photographe ENDS here-->
 
     <!--cellule nb de likes + tarif/jour (partie JS)-->
-    
+
   </main>
   <!--Main Section ends here-->
 
@@ -51,15 +51,30 @@
       <header>
         <h2>Contactez-moi</h2>
         <img src="assets/icons/close.svg" onclick="closeModal()" />
+        <!--nom du photographe (JS)-->
       </header>
 
       <!--modal form-->
       <form>
-        <div>
-          <label>Prénom</label>
-          <input />
+        
+        <div aria-label="entrées du formulaire">
+
+          <label for="prénom">Prénom</label>
+          <input type="text" name="prénom" id="prénom" placeholder="Votre Prénom"/>
+
+          <label for="nom">Nom</label>
+          <input type="text" name="nom" id="nom" placeholder="Votre Nom" />
+
+          <label for="email">Email</label>
+          <input type="email" name="email" id="email" placeholder="Votre Email" />
+
+          <label for="message">Votre Message</label>
+          <textarea type="text" name="message" id="message" placeholder="Votre Message"></textarea>
+
         </div>
+
         <button class="contact_button">Envoyer</button>
+
       </form>
 
     </div>
