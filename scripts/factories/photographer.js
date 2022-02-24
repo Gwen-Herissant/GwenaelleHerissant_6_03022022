@@ -4,40 +4,33 @@ function photographerFactory(data) {
     const picture = `assets/photographers/${data.portrait}`;
 
     function getUserCardDOM() {
+        //creates article
         const article = document.createElement( 'article' );
+        //portrait
         const img = document.createElement( 'img' );
         img.setAttribute("src", picture)
+        article.appendChild(img);
+        //name
         const name = document.createElement( 'h2' );
         name.textContent = data.name;
-        const location = document.createElement('p');
-        location.textContent = `${data.city}, ${data.country}`;
-        const tagline = document.createElement('p');
-        tagline.textContent = data.tagline;
-        const price = document.createElement('p');
-        price.textContent = `${data.price}€/jour`;
-        article.appendChild(img);
         article.appendChild(name);
+        //location
+        const location = document.createElement('p');
+        location.classList.add('photographer-location')
+        location.textContent = `${data.city}, ${data.country}`;
         article.appendChild(location);
+        //tagline
+        const tagline = document.createElement('p');
+        tagline.classList.add('photograher-tagline')
+        tagline.textContent = data.tagline;
         article.appendChild(tagline);
+        //price per day
+        const price = document.createElement('p');
+        price.classList.add('photographer-price')
+        price.textContent = `${data.price}€/jour`;
         article.appendChild(price);
+
         return (article);
     }
     return { picture, getUserCardDOM }
 }
-
-/* 
-soit :
-- continuer l.2 en ajoutant dans {} les data nécessaire : city, country, tagline, etc...  **
-- remplacer contenu de {} l.2 avec ...rest  **
-- commenter l.2 et utiliser data direct dans instances : par ex sur l.11, au lieu de 'name' écrire 'data.name' (et idem pour autres infos à appeller) 
-
-** voir ce cours : https://javascript.info/destructuring-assignment#object-destructuring 
-*/
-
-/*
-Photo - <img>
-Name - <h2>
-City, Country <p>
-Tagline <p>
-Price€/jour <p>
-*/
