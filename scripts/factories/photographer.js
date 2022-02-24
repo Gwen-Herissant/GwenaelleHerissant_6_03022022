@@ -6,15 +6,22 @@ function photographerFactory(data) {
     function getUserCardDOM() {
         //creates article
         const article = document.createElement( 'article' );
+        //link
+        const link = document.createElement('a');
+        link.setAttribute('title', data.name);
+        link.setAttribute('ariaLabel', data.name);
+        link.setAttribute('tabindex', 0);  //set focus ?
+        link.setAttribute('href', 'some url');
+        article.appendChild(link);
         //portrait
         const img = document.createElement( 'img' );
         img.setAttribute("src", picture);
-        img.setAttribute('alt', data.name);
-        article.appendChild(img);
+        img.setAttribute('alt', '');
+        link.appendChild(img);
         //name
         const name = document.createElement( 'h2' );
         name.textContent = data.name;
-        article.appendChild(name);
+        link.appendChild(name);
         //location
         const location = document.createElement('p');
         location.classList.add('photographer-location')
