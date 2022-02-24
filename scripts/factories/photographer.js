@@ -8,7 +8,8 @@ function photographerFactory(data) {
         const article = document.createElement( 'article' );
         //portrait
         const img = document.createElement( 'img' );
-        img.setAttribute("src", picture)
+        img.setAttribute("src", picture);
+        img.setAttribute('alt', data.name);
         article.appendChild(img);
         //name
         const name = document.createElement( 'h2' );
