@@ -15,3 +15,20 @@ function photographerFactory(data) {
     }
     return { name, picture, getUserCardDOM }
 }
+
+/* 
+soit :
+- continuer l.2 en ajoutant dans {} les data nécessaire : city, country, tagline, etc...  **
+- remplacer contenu de {} l.2 avec ...rest  **
+- commenter l.2 et utiliser data direct dans instances : par ex sur l.11, au lieu de 'name' écrire 'data.name' (et idem pour autres infos à appeller) 
+
+** voir ce cours : https://javascript.info/destructuring-assignment#object-destructuring 
+*/
+
+/*
+Photo
+Name
+City, Country
+Tagline
+Price€/jour
+*/
