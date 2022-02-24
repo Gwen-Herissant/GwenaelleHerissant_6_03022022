@@ -1,19 +1,28 @@
 function photographerFactory(data) {
-    const { name, portrait } = data;
+    // const { name, portrait } = data;
 
-    const picture = `assets/photographers/${portrait}`;
+    const picture = `assets/photographers/${data.portrait}`;
 
     function getUserCardDOM() {
         const article = document.createElement( 'article' );
         const img = document.createElement( 'img' );
         img.setAttribute("src", picture)
-        const h2 = document.createElement( 'h2' );
-        h2.textContent = name;
+        const name = document.createElement( 'h2' );
+        name.textContent = data.name;
+        const location = document.createElement('p');
+        location.textContent = `${data.city}, ${data.country}`;
+        const tagline = document.createElement('p');
+        tagline.textContent = data.tagline;
+        const price = document.createElement('p');
+        price.textContent = `${data.price}€/jour`;
         article.appendChild(img);
-        article.appendChild(h2);
+        article.appendChild(name);
+        article.appendChild(location);
+        article.appendChild(tagline);
+        article.appendChild(price);
         return (article);
     }
-    return { name, picture, getUserCardDOM }
+    return { picture, getUserCardDOM }
 }
 
 /* 
@@ -26,9 +35,9 @@ soit :
 */
 
 /*
-Photo
-Name
-City, Country
-Tagline
-Price€/jour
+Photo - <img>
+Name - <h2>
+City, Country <p>
+Tagline <p>
+Price€/jour <p>
 */
