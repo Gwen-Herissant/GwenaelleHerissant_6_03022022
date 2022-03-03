@@ -11,7 +11,7 @@ function photographerFactory(data) {
         link.setAttribute('title', data.name);
         link.setAttribute('ariaLabel', data.name);
         link.setAttribute('tabindex', 0);  //set focus ?        
-        link.setAttribute('href', `./photographer.html/?id=${data.id}`);
+        link.setAttribute('href', `./photographer.html?id=${data.id}`);
         article.appendChild(link);
         //portrait
         const img = document.createElement( 'img' );
