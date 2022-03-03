@@ -3,14 +3,12 @@
         let response = await fetch('/FishEye_code/data/photographers.json');
         let json;
 
-        if (response.ok) { // if HTTP-status is 200-299
-        // get the response body (the method explained below)
+        if (response.ok) { 
             json = await response.json();
         } else {
             alert("HTTP-Error: " + response.status);
         }
         
-        // et bien retourner le tableau photographers seulement une fois
         return {photographers: [...json.photographers]}
     }
 
