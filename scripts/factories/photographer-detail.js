@@ -1,7 +1,7 @@
 function photographerFactory(data) {
 
     //text details in photographer 'header'
-    function photograherDetails() {
+    function photographerDetails() {
         //get html section
         const textSection = document.querySelector('.photographer-details');
         //create h1 for name
@@ -16,7 +16,7 @@ function photographerFactory(data) {
         textSection.appendChild(location);
         //create p for tagline
         const tagline = document.createElement('p');
-        tagline.classList.add('photograher-details__tagline')
+        tagline.classList.add('photographer-details__tagline')
         tagline.textContent = data.tagline;
         textSection.appendChild(tagline);
 
@@ -24,22 +24,22 @@ function photographerFactory(data) {
     }
 
     //portait in photographer 'header'
-    const picture = `assets/photographers/${data.portrait}`;
+    //const picture = `assets/photographers/${data.portrait}`;
 
-    function photograherPortait() {
+    function photographerPortait() {
         //get html section
-        const photograherSection = document.querySelector('.photographer-section');
+        const photographerSection = document.querySelector('.photographer-section');
         //create img
         const img = document.createElement( 'img' );
-        img.setAttribute("src", picture);
+        img.setAttribute("src", `assets/photographers/${data.portrait}`);
         img.setAttribute('alt', '');
-        photograherSection.appendChild(img); 
+        photographerSection.appendChild(img); 
 
-        return (photograherSection);
+        return (photographerSection);
     }
 
     //price bloc
-    function photograherPrice() {
+    function photographerPrice() {
         //get html section
         const priceCell = document.querySelector('.price-cell');
         //create p for price
@@ -51,5 +51,12 @@ function photographerFactory(data) {
         return (priceCell);
     }
 
-    return { picture, photograherDetails, photograherPortait, photograherPrice }
+    //photographer id for display
+    function photographerId() {
+        const id = data.id; //console error: data undefined ?????
+
+        return (id);
+    }
+
+    return { photographerDetails, photographerPortait, photographerPrice, photographerId }
 }
