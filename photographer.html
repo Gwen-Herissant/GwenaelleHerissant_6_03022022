@@ -24,20 +24,34 @@
   <main id="main">
 
     <!--photographer details-->
-    <div class="photograph-header"> 
+    <section class="photographer-section"> 
       <!--Name + détails (see JS)-->
+      <div class="photographer-details" aria-label="Détails du photographe">
+        <!--h1 pour nom-->
+        <!--p pour localisation + tagline-->
+      </div>
+      <!--Contact btn-->
       <button class="contact_button" onclick="displayModal()">Contactez-moi</button>
       <!--Portrait (see JS)-->
-    </div>
+    </section>
 
     <!--Trier par + <select> 'form'-->
+    <label for="order-by">Trier par</label>
+    <select name="order-by" id="order-by">
+      <option value="popularity">Popularité</option>
+      <option value="date">Date</option>
+      <option value="title">Titre</option>
+    </select>
 
     <!--grille d'images du photographe-->
+    <section class="media-grid">
       <!--images = liens ouvrant lightbox-->
       <!--titre de la photo + icon 'like'-->
+    </section>
     <!--grille d'images du photographe ENDS here-->
 
     <!--cellule nb de likes + tarif/jour (partie JS)-->
+    <div class="price-cell" aria-label="Total de likes et tarif du photographe"></div>
 
   </main>
   <!--Main Section ends here-->
@@ -84,6 +98,10 @@
 
   <!--Javascript-->
   <script src="/scripts/utils/contactForm.js"></script>
+  <script src="scripts/pages/photographer.js"></script>
+  <script src="scripts/factories/Photographer.js"></script>
+
+
 
 </body>
 
