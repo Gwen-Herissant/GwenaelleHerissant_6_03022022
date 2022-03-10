@@ -38,6 +38,18 @@ function photographerFactory(data) {
         return (photograherSection);
     }
 
+    //price bloc
+    function photograherPrice() {
+        //get html section
+        const priceCell = document.querySelector('.price-cell');
+        //create p for price
+        const price = document.createElement('p');
+        price.classList.add('price-cell__price')
+        price.textContent = `${data.price}€/jour`;
+        priceCell.appendChild(price);
 
-    return { picture, photograherDetails, photograherPortait }
+        return (priceCell);
+    }
+
+    return { picture, photograherDetails, photograherPortait, photograherPrice }
 }
