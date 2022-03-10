@@ -16,35 +16,68 @@ async function getPhotographer() {
 
 }
 
-//display photographer data
+//display photographer details
 async function displayPhotographerDetails(photographers) {
 
-   //récupère sections html pour y injecter le contenu
+   //récupère section html pour y injecter le contenu
    const photographerSection = document.querySelector('.photographer-section');
-   const priceCell = document.querySelector('.price-cell');
-
    //pour chacun, récupère factory et injecte les data
    photographers.forEach((photographer) => {
       //pour 'photographer-header'
       const photographerModel = photographerFactory(photographer);
       const photographerDetails = photographerModel.photographerDetails();
       photographerSection.appendChild(photographerDetails);
+
+   })
+
+}
+
+
+//display photographer portrait
+async function displayPhotographerPortait(photographers) {
+
+   //récupère section html pour y injecter le contenu
+   const photographerSection = document.querySelector('.photographer-section');
+
+   //pour chacun, récupère factory et injecte les data
+   photographers.forEach((photographer) => {
+      const photographerModel = photographerFactory(photographer);
       const photographerPortait = photographerModel.photographerPortait();
       photographerSection.appendChild(photographerPortait);
-      //pour price/likes cell
+   })
+
+}
+
+
+//display photographer price
+async function displayPhotographerPrice(photographers) {
+
+   //récupère section html pour y injecter le contenu
+   const priceCell = document.querySelector('.price-cell');
+
+   //pour chacun, récupère factory et injecte les data
+   photographers.forEach((photographer) => {
+      const photographerModel = photographerFactory(photographer);
       const photographerPrice = photographerModel.photographerPrice();
       priceCell.appendChild(photographerPrice);
    })
 
 }
 
+async function init() {
+   // Récupère les datas des photographes
+   const { photographer } = await getPhotographer();
+   displayPhotographerDetails(photographer);
+   displayPhotographerPortait(photographer);
+   displayPhotographerPrice(photographer);
+};
 
 //get right ID to display right photographer
 async function getPhotographerID() {
 
    //get id in url
-   let urlParams = (new URL(document.location)).searchParams;
-   let urlId = urlParams.get('id');
+   const urlParams = (new URL(document.location)).searchParams;
+   const urlId = urlParams.get('id');
    console.log(urlId);
 
    //need to get ID in photographer data
@@ -53,16 +86,11 @@ async function getPhotographerID() {
 
    //compare id in url to data
    if (urlId === photographerId) {
-      //display photographer
+      init();  //display data
    }
 }
 
 getPhotographerID();
 
-async function init() {
-   // Récupère les datas des photographes
-   const { photographer } = await getPhotographer();
-   displayPhotographerDetails(photographer);
-};
+
     
-init();
