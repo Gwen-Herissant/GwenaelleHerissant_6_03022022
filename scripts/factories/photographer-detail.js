@@ -23,9 +23,6 @@ function photographerFactory(data) {
         return (textSection);
     }
 
-    //portait in photographer 'header'
-    //const picture = `assets/photographers/${data.portrait}`;
-
     function photographerPortait() {
         //get html section
         const photographerSection = document.querySelector('.photographer-section');
@@ -51,12 +48,5 @@ function photographerFactory(data) {
         return (priceCell);
     }
 
-    //photographer id for display
-    function photographerId() {
-        const id = data.id; //console error: data undefined ?????
-
-        return (id);
-    }
-
-    return { photographerDetails, photographerPortait, photographerPrice, photographerId }
+    return { photographerDetails, photographerPortait, photographerPrice }
 }

@@ -1,4 +1,4 @@
-async function getPhotographer() {
+async function getPhotographer(id) {
 
    let response = await fetch('/FishEye_code/data/photographers.json');
    let json;
@@ -8,89 +8,58 @@ async function getPhotographer() {
    } else {
       alert("HTTP-Error: " + response.status);
    }
+
+   console.log(id);
+
+   let photographerID = json.photographers.find(item => {return item.id == id});
+   console.log(photographerID);
    
+   // const photographerID = json.photographers.filter((photographer) => photographer.id === id) [0];
+   // console.log(photographerID);
+
    return {
-      photographers: [...json.photographers],
+      photographer: [...json.photographers],
       media: [...json.media] //or ...json.photographers (for file) ?
    }
 
 }
 
+
 //display photographer details
-async function displayPhotographerDetails(photographers) {
+async function displayPhotographerDetails(photographer) {
 
    //récupère section html pour y injecter le contenu
    const photographerSection = document.querySelector('.photographer-section');
-   //pour chacun, récupère factory et injecte les data
-   photographers.forEach((photographer) => {
-      //pour 'photographer-header'
-      const photographerModel = photographerFactory(photographer);
-      const photographerDetails = photographerModel.photographerDetails();
-      photographerSection.appendChild(photographerDetails);
-
-   })
-
-}
-
-
-//display photographer portrait
-async function displayPhotographerPortait(photographers) {
-
-   //récupère section html pour y injecter le contenu
-   const photographerSection = document.querySelector('.photographer-section');
-
-   //pour chacun, récupère factory et injecte les data
-   photographers.forEach((photographer) => {
-      const photographerModel = photographerFactory(photographer);
-      const photographerPortait = photographerModel.photographerPortait();
-      photographerSection.appendChild(photographerPortait);
-   })
-
-}
-
-
-//display photographer price
-async function displayPhotographerPrice(photographers) {
-
-   //récupère section html pour y injecter le contenu
    const priceCell = document.querySelector('.price-cell');
 
    //pour chacun, récupère factory et injecte les data
-   photographers.forEach((photographer) => {
+   photographer.forEach((photographer) => {
+      //récupère la factory
       const photographerModel = photographerFactory(photographer);
+      //photographer details
+      const photographerDetails = photographerModel.photographerDetails();
+      photographerSection.appendChild(photographerDetails);
+      //photographer portrait
+      const photographerPortait = photographerModel.photographerPortait();
+      photographerSection.appendChild(photographerPortait);
+      //photographer price
       const photographerPrice = photographerModel.photographerPrice();
       priceCell.appendChild(photographerPrice);
    })
 
 }
 
+
 async function init() {
-   // Récupère les datas des photographes
-   const { photographer } = await getPhotographer();
-   displayPhotographerDetails(photographer);
-   displayPhotographerPortait(photographer);
-   displayPhotographerPrice(photographer);
-};
-
-//get right ID to display right photographer
-async function getPhotographerID() {
-
    //get id in url
    const urlParams = (new URL(document.location)).searchParams;
-   const urlId = urlParams.get('id');
-   console.log(urlId);
+   const id = urlParams.get('id');
+   console.log(id);
 
-   //need to get ID in photographer data
-   const photographerModel = photographerFactory();
-   const photographerId = photographerModel.photographerId();
+   // Récupère les datas des photographes
+   const { photographer } = await getPhotographer(id);
+   displayPhotographerDetails(photographer);
+};
 
-   //compare id in url to data
-   if (urlId === photographerId) {
-      init();  //display data
-   }
-}
+init();
 
-getPhotographerID();
-
-
-    
