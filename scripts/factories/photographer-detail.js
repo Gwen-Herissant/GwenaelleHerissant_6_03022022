@@ -25,11 +25,11 @@ function photographerFactory(data) {
 
     function photographerPortait() {
         //get html section
-        const photographerSection = document.querySelector('.photographer-section');
+        const photographerSection = document.querySelector('.photograph-header');
         //create img
         const img = document.createElement( 'img' );
         img.setAttribute("src", `assets/photographers/${data.portrait}`);
-        img.setAttribute('alt', '');
+        img.setAttribute('alt', `${data.name}`);
         photographerSection.appendChild(img); 
 
         return (photographerSection);

@@ -24,12 +24,26 @@ async function getPhotographer(id) {
 
 }
 
+/*
+Pour tri des médias => ne display que ceux appartenant au photographer :
+- soit utiliser méthode filter (peu pratique si très gros json, mais peu passer ici)
+- soit loop for de style
+créer un array vide vouer à récupérer les média avec bon photographerID
+for avec itération i++;
+si photographerID < à celui rechercher : "continue" (passe à loop suivant)
+si photographerId === à celui rechercher : ajoute le média à l'array
+si photgrapherID > à celui rechercher : return l'array (donc stop l'itération)
+(faire attention à si le fait que les photographerID ne soit pas trier par ordre croissant ne poserais pas un souci)
+*/
+
+
+
 
 //display photographer details
 async function displayPhotographerDetails(photographer) {
 
    //récupère section html pour y injecter le contenu
-   const photographerSection = document.querySelector('.photographer-section');
+   const photographerSection = document.querySelector('.photograph-header');
    const priceCell = document.querySelector('.price-cell');
 
    //pour chacun, récupère factory et injecte les data
