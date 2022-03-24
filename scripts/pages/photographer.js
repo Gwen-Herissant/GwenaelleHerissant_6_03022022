@@ -11,32 +11,19 @@ async function getPhotographer(id) {
 
    console.log(id);
 
-   let photographerID = json.photographers.find(item => {return item.id == id});
+   let photographerID = json.photographers.find(item => item.id == id);
    console.log(photographerID);
    
-   // const photographerID = json.photographers.filter((photographer) => photographer.id === id) [0];
-   // console.log(photographerID);
+   // const mediaPhotographerID = json.photographers.filter((media) => media.photographerId === id) [0];
+   // console.log(mediaPhotographerID);
 
    return {
+      photographerID,
       photographer: [...json.photographers],
-      media: [...json.media] //or ...json.photographers (for file) ?
+      media: [...json.photographers] //or ...json.photographers (for file) ?
    }
 
 }
-
-/*
-Pour tri des médias => ne display que ceux appartenant au photographer :
-- soit utiliser méthode filter (peu pratique si très gros json, mais peu passer ici)
-- soit loop for de style
-créer un array vide vouer à récupérer les média avec bon photographerID
-for avec itération i++;
-si photographerID < à celui rechercher : "continue" (passe à loop suivant)
-si photographerId === à celui rechercher : ajoute le média à l'array
-si photgrapherID > à celui rechercher : return l'array (donc stop l'itération)
-(faire attention à si le fait que les photographerID ne soit pas trier par ordre croissant ne poserais pas un souci)
-*/
-
-
 
 
 //display photographer details
@@ -63,6 +50,20 @@ async function displayPhotographerDetails(photographer) {
 
 }
 
+async function displayPhotographerMedia(media) {
+   //récupère section html pour y injecter le contenu
+   const mediaGrid = document.querySelector('.media-grid');
+
+   //pour chacun, récupère factory et injecte les data
+   media.forEach((media) => {
+      //récupère la factory
+      const mediaModel = mediaFactory(media);
+      const mediaCard =  mediaModel.mediaCard();
+      mediaGrid.appendChild(mediaCard);
+
+   })
+}
+
 
 async function init() {
    //get id in url
@@ -71,8 +72,9 @@ async function init() {
    console.log(id);
 
    // Récupère les datas des photographes
-   const { photographer } = await getPhotographer(id);
+   const { photographer, media} = await getPhotographer(id);
    displayPhotographerDetails(photographer);
+   displayPhotographerMedia(media);
 };
 
 init();
