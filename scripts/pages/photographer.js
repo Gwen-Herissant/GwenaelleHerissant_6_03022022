@@ -9,22 +9,14 @@ async function getPhotographer(id) {
       alert("HTTP-Error: " + response.status);
    }
 
-   console.log(id);
-
-   let photographerID = json.photographers.find(item => item.id == id);
-   console.log(photographerID);
-   
-   // const mediaPhotographerID = json.photographers.filter((media) => media.photographerId === id) [0];
-   // console.log(mediaPhotographerID);
+   let photographerInfos = json.photographers.find(item => item.id == id);
 
    return {
-      photographerID,
-      photographer: [...json.photographers],
-      media: [...json.photographers] //or ...json.photographers (for file) ?
+      photographer: photographerInfos,
+      media: [...json.media]
    }
 
 }
-
 
 //display photographer details
 async function displayPhotographerDetails(photographer) {
@@ -33,9 +25,7 @@ async function displayPhotographerDetails(photographer) {
    const photographerSection = document.querySelector('.photograph-header');
    const priceCell = document.querySelector('.price-cell');
 
-   //pour chacun, récupère factory et injecte les data
-   photographer.forEach((photographer) => {
-      //récupère la factory
+   //récupère la factory
       const photographerModel = photographerFactory(photographer);
       //photographer details
       const photographerDetails = photographerModel.photographerDetails();
@@ -46,7 +36,6 @@ async function displayPhotographerDetails(photographer) {
       //photographer price
       const photographerPrice = photographerModel.photographerPrice();
       priceCell.appendChild(photographerPrice);
-   })
 
 }
 
@@ -64,12 +53,10 @@ async function displayPhotographerMedia(media) {
    })
 }
 
-
 async function init() {
    //get id in url
    const urlParams = (new URL(document.location)).searchParams;
    const id = urlParams.get('id');
-   console.log(id);
 
    // Récupère les datas des photographes
    const { photographer, media} = await getPhotographer(id);
