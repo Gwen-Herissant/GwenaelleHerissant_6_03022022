@@ -10,58 +10,51 @@ async function getPhotographer(id) {
    }
 
    let photographerInfos = json.photographers.find(item => item.id == id);
+   
+   let photographerID = json.media.filter(item => item.photographerId == id);
 
    return {
       photographer: photographerInfos,
-      media: [...json.media]
+      media: photographerID
    }
 
 }
 
-//display photographer details
 async function displayPhotographerDetails(photographer) {
 
-   //récupère section html pour y injecter le contenu
    const photographerSection = document.querySelector('.photograph-header');
    const priceCell = document.querySelector('.price-cell');
 
-   //récupère la factory
       const photographerModel = photographerFactory(photographer);
-      //photographer details
       const photographerDetails = photographerModel.photographerDetails();
       photographerSection.appendChild(photographerDetails);
-      //photographer portrait
       const photographerPortait = photographerModel.photographerPortait();
-      photographerSection.appendChild(photographerPortait);
-      //photographer price
-      const photographerPrice = photographerModel.photographerPrice();
+      photographerSection.appendChild(photographerPortait);      const photographerPrice = photographerModel.photographerPrice();
       priceCell.appendChild(photographerPrice);
 
-}
+};
 
-async function displayPhotographerMedia(media) {
-   //récupère section html pour y injecter le contenu
-   const mediaGrid = document.querySelector('.media-grid');
 
-   //pour chacun, récupère factory et injecte les data
+async function displayMedias(media) {
+   const mediaSection = document.querySelector('.media-grid');
+
    media.forEach((media) => {
-      //récupère la factory
-      const mediaModel = mediaFactory(media);
-      const mediaCard =  mediaModel.mediaCard();
-      mediaGrid.appendChild(mediaCard);
+      const mediaModel = newMediaCard(media);
+      const mediaCard = mediaModel.mediaCard();
+      
+      mediaSection.appendChild(mediaCard);
+   });
 
-   })
-}
+};
+
 
 async function init() {
-   //get id in url
    const urlParams = (new URL(document.location)).searchParams;
    const id = urlParams.get('id');
 
-   // Récupère les datas des photographes
-   const { photographer, media} = await getPhotographer(id);
+   const { photographer, media } = await getPhotographer(id);
    displayPhotographerDetails(photographer);
-   displayPhotographerMedia(media);
+   displayMedias(media);
 };
 
 init();
