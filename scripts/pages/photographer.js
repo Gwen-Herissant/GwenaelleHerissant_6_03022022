@@ -11,35 +11,42 @@ async function getPhotographer(id) {
 
    let photographerInfos = json.photographers.find(item => item.id == id);
    
-   let photographerID = json.media.filter(item => item.photographerId == id);
+   let photographerMedias = json.media.filter(item => item.photographerId == id);
 
    return {
       photographer: photographerInfos,
-      media: photographerID
+      media: photographerMedias
    }
 
 }
 
-async function displayPhotographerDetails(photographer) {
+
+async function displayPhotographerDetails(data) {
 
    const photographerSection = document.querySelector('.photograph-header');
+   photographerSection.innerHTML = `
+      <div class="photographer-details" aria-label="Détails du photographe">
+      <h1 class="photographer-details__name">${data.name}</h1>
+      <p class="photographer-details__location">${data.city}, ${data.country}</p>
+      <p class="photographer-details__tagline">${data.tagline}</p>
+    </div>
+    <button class="contact_button" onclick="displayModal()">Contactez-moi</button>
+    <img src="assets/photographers/${data.portrait}" alt="${data.name}">
+   `
+
    const priceCell = document.querySelector('.price-cell');
+   priceCell.innerHTML = `
+      <p class="price-cell_price">${data.price}€/jour</p>
+   `
 
-      const photographerModel = photographerFactory(photographer);
-      const photographerDetails = photographerModel.photographerDetails();
-      photographerSection.appendChild(photographerDetails);
-      const photographerPortait = photographerModel.photographerPortait();
-      photographerSection.appendChild(photographerPortait);      const photographerPrice = photographerModel.photographerPrice();
-      priceCell.appendChild(photographerPrice);
-
-};
+}
 
 
 async function displayMedias(media) {
    const mediaSection = document.querySelector('.media-grid');
 
    media.forEach((media) => {
-      const mediaModel = newMediaCard(media);
+      const mediaModel = galleryFactory(media);
       const mediaCard = mediaModel.mediaCard();
       
       mediaSection.appendChild(mediaCard);
