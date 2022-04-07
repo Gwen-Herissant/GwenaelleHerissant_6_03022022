@@ -41,7 +41,7 @@
 
 .price-cell {
   display: flex;
-  position: absolute;
+  position: fixed;
   bottom: 0;
   right: 36px;
   background-color: #DB8876;
@@ -164,4 +164,25 @@ form input {
   height: 68px;
   border: none;
   border-radius: 5px;
+}
+
+.media-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 70px;
+  margin: 100px;
+}
+
+.media-details {
+  display: flex;
+  justify-content: space-between;
+}
+
+.media-details p {
+  font-size: 24px;
+  color: #901C1C;
+}
+
+.media-details__icon {
+  width: 24px;
 }
