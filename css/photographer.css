@@ -183,6 +183,11 @@ form input {
   color: #901C1C;
 }
 
+.media-details__likes-wrapper {
+  display: flex;
+}
+
 .media-details__icon {
   width: 24px;
+  margin-left: 5px;
 }
