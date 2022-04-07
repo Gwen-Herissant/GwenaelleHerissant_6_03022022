@@ -36,7 +36,8 @@ async function displayPhotographerDetails(data) {
 
    const priceCell = document.querySelector('.price-cell');
    priceCell.innerHTML = `
-      <p class="price-cell_price">${data.price}€/jour</p>
+      <p class="price-cell__likes price-cell__icon">${data.likes}</p>
+      <p class="price-cell__price">${data.price}€ / jour</p>
    `
 
 }
@@ -48,8 +49,10 @@ async function displayMedias(media) {
    media.forEach((media) => {
       const mediaModel = galleryFactory(media);
       const mediaCard = mediaModel.mediaCard();
-      
-      mediaSection.appendChild(mediaCard);
+
+      mediaSection.append(mediaCard);
+
+      //console.log(mediaCard);
    });
 
 };

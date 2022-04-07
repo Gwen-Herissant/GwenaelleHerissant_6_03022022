@@ -1,47 +1,43 @@
-function newMediaCard(data) {
+function galleryFactory(data) {
 
     function mediaCard() {
-        // const article = document.createElement('article');
+        const article = document.createElement('article');
 
-        // const link = document.createElement('a');
-        // link.setAttribute('title', `${data.name}`);
-        // link.setAttribute('ariaLabel', `${data.name}`);
-        // article.appendChild(link);
+        const link = document.createElement('a');
+        link.setAttribute('title', `${data.name}`);
+        link.setAttribute('ariaLabel', `${data.name}`);
+        article.appendChild(link);
 
-        // const media = new MediaFactory;
-        // link.appendChild(media);
+        const media = new MediaFactory;
+        console.log(media);
+        link.append(media);
 
-        // const title = document.createElement('p');
-        // title.classList.add('media__title')
-        // title.textContent = data.title;
-        // article.appendChild(title);
+        const mediaDetails = document.createElement('div');
+        mediaDetails.classList.add('media-details')
+        mediaDetails.setAttribute('ariaLabel', 'media details');
+        article.appendChild(mediaDetails);
 
-        // const likes = document.createElement('p');
-        // likes.classList.add('media__likes')
-        // likes.textContent = data.likes;
-        // article.appendChild(likes);
+        const title = document.createElement('p');
+        title.classList.add('media-details__title')
+        title.textContent = data.title;
+        mediaDetails.appendChild(title);
 
-        // const icon = `<i class="media__icon fa-solid fa-heart"></i>`
-        // article.appendChild(icon);
+        const likes = document.createElement('p');
+        likes.classList.add('media-details__likes')
+        likes.textContent = data.likes;
+        mediaDetails.appendChild(likes);
 
-        // return (article);
+        const icon = document.createElement('img');
+        icon.setAttribute('src', '/FishEye_code/assets/icons/heart-icon.svg');
+        icon.setAttribute('alt', 'Likes');
+        icon.classList.add('media-details__icon');
+        mediaDetails.append(icon);
 
-        const mediaCardHTML = `
-            <article>
-                <a title=${data.title} aria-label=${data.title}>
-                    ${new MediaFactory}
-                </a>
-                <p class="media__title">${data.title}</p>
-                <p class="media__likes">${data.likes}</p>
-                <i class="media__icon fa-solid fa-heart"></i>
-            </article>
-        `
-        return (mediaCardHTML);
+        return (article);
     }
 
-    return mediaCard;
+    return { mediaCard };
 }
-
 
 class MediaImage {
 
@@ -55,7 +51,6 @@ class MediaImage {
 
 }
 
-
 class MediaVideo {
 
     mediaElement(data) {
@@ -68,16 +63,15 @@ class MediaVideo {
 
 }
 
-
 class MediaFactory {
 
     mediaFactory(data) {
-        let item = data.media;  
-
+        //let item = data.media;  
+        
         if (item.hasOwnAttribute('image')) {
-            return new MediaImage(data);
+            return new MediaImage();
         } else if (item.hasOwnAttribute('video')) {
-            return new MediaVideo(data);
+            return new MediaVideo();
         } else {
             throw 'Format inconnu';
         }
