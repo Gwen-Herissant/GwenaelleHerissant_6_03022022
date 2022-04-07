@@ -51,8 +51,6 @@ async function displayMedias(media) {
       const mediaCard = mediaModel.mediaCard();
 
       mediaSection.append(mediaCard);
-
-      //console.log(mediaCard);
    });
 
 };

@@ -1,5 +1,7 @@
 function galleryFactory(data) {
 
+    let mediaFactory = new MediaFactory();
+
     function mediaCard() {
         const article = document.createElement('article');
 
@@ -8,9 +10,7 @@ function galleryFactory(data) {
         link.setAttribute('ariaLabel', `${data.name}`);
         article.appendChild(link);
 
-        const media = new MediaFactory;
-        console.log(media);
-        link.append(media);
+        link.append(mediaFactory);
 
         const mediaDetails = document.createElement('div');
         mediaDetails.classList.add('media-details')
@@ -22,16 +22,21 @@ function galleryFactory(data) {
         title.textContent = data.title;
         mediaDetails.appendChild(title);
 
+        const likesWrapper = document.createElement('div');
+        likesWrapper.classList.add('media-details__likes-wrapper')
+        likesWrapper.setAttribute('ariaLabel', 'likes');
+        mediaDetails.appendChild(likesWrapper);
+
         const likes = document.createElement('p');
         likes.classList.add('media-details__likes')
         likes.textContent = data.likes;
-        mediaDetails.appendChild(likes);
+        likesWrapper.appendChild(likes);
 
         const icon = document.createElement('img');
         icon.setAttribute('src', '/FishEye_code/assets/icons/heart-icon.svg');
         icon.setAttribute('alt', 'Likes');
         icon.classList.add('media-details__icon');
-        mediaDetails.append(icon);
+        likesWrapper.append(icon);
 
         return (article);
     }
@@ -40,42 +45,34 @@ function galleryFactory(data) {
 }
 
 class MediaImage {
-
     mediaElement(data) {
         const imageElement = document.createElement('img');
         imageElement.setAttribute("src", `assets/images/${data.image}`);
         imageElement.setAttribute('alt', data.title);
-
         return imageElement;
     }
-
 }
 
 class MediaVideo {
-
     mediaElement(data) {
         const videoElement = document.createElement('video');
         videoElement.setAttribute("src", `assets/images/${data.video}`);
         videoElement.setAttribute('controls', 'controls');
-
         return videoElement;
     }
-
 }
 
 class MediaFactory {
-
     mediaFactory(data) {
         //let item = data.media;  
-        
-        if (item.hasOwnAttribute('image')) {
-            return new MediaImage();
-        } else if (item.hasOwnAttribute('video')) {
-            return new MediaVideo();
+        if (data.hasOwnAttribute('image')) {
+            return new MediaImage(data);
+        } else if (data.hasOwnAttribute('video')) {
+            return new MediaVideo(data);
         } else {
             throw 'Format inconnu';
         }
     }
-    
 }
+
 
