@@ -176,11 +176,14 @@ form input {
 .media-details {
   display: flex;
   justify-content: space-between;
+  padding-top: 15px;
 }
 
 .media-details p {
+  align-self: center;
   font-size: 24px;
   color: #901C1C;
+  margin: 0;
 }
 
 .media-details__likes-wrapper {
@@ -190,4 +193,18 @@ form input {
 .media-details__icon {
   width: 24px;
   margin-left: 5px;
+}
+
+.media-grid article {
+  max-width: 350px;
+  max-height: 300px;
+  margin-bottom: 35px;
+}
+
+.media-grid__image,
+.media-grid__video {
+  width: 350px;
+  height: 300px;
+  object-fit: cover;
+  border-radius: 5px;
 }
