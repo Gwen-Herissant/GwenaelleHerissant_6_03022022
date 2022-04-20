@@ -21,7 +21,7 @@
   <!--Header ends here-->
 
   <!--Main Section-->
-  <main id="main">
+  <main id="main" aria-hidden="false">
 
     <!--photographer details-->
     <section class="photograph-header"></section>
@@ -48,19 +48,19 @@
   <!--Main Section ends here-->
 
   <!--Contact modal-->
-  <div id="contact_modal">
+  <div id="contact_modal" aria-hidden="true" role="dialog" aria-describedby="modal-title">
 
     <div class="modal">
 
       <!--modal header-->
       <header>
-        <h2>Contactez-moi</h2>
-        <img src="assets/icons/close.svg" onclick="closeModal()" />
+        <h2 id="modal-title">Contactez-moi</h2>
+        <img src="assets/icons/close.svg" class="close_button" role="button" onclick="closeModal()" />
         <!--nom du photographe (JS)-->
       </header>
 
       <!--modal form-->
-      <form>
+      <form id="form">
         
         <div aria-label="entrées du formulaire">
 
