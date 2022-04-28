@@ -10,25 +10,34 @@ const email = document.getElementById("email");
 const message = document.getElementById("message");
 
 
+//accessibilité au clavier
+document.addEventListener('keyup', onKeyUp);
+function onKeyUp(e) {
+    if(e.key === 'Escape') {
+        closeModal(e);
+    }
+}
+
 function displayModal() {
     main.setAttribute('aria-hidden', 'true');
     modal.setAttribute('aria-hidden', 'false');
     modal.classList.add('contact_modal--open');
 	modal.style.display = "block";
-    closeBtn.focus();
 }
 
-function closeModal() {
+function closeModal(e) {
     main.setAttribute('aria-hidden', 'flase');
     modal.setAttribute('aria-hidden', 'true');
     modal.classList.toggle('contact_modal--open');
     modal.style.display = "none";
-    contactBtn.focus();
 
     // refresh page (and form) after submitting or closing modal
-    setTimeout((windowOff = () => {
-        window.location.reload();
-    }), 1000);
+    // setTimeout((windowOff = () => {
+    //     window.location.reload();
+    // }), 1000);
+
+    document.removeEventListener('keyup', onKeyUp);
+
 }
 
 //error style change 
