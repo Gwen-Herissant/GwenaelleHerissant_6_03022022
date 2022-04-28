@@ -3,15 +3,15 @@ function galleryFactory(data) {
     function mediaCard() {
         const article = document.createElement('article');
 
-        const link = document.createElement('a');
+        link = document.createElement('a');
         link.setAttribute('title', `${data.title}`);
         link.setAttribute('ariaLabel', `${data.title}`);
-        link.setAttribute('href', `#`);
+        link.setAttribute('onclick', 'return false;');
         article.appendChild(link);
 
         let mediaFactory = new MediaFactory(data);
-        console.log(mediaFactory);
         link.append(mediaFactory);
+        link.setAttribute('href', `${mediaFactory.src}`);
 
         const mediaDetails = document.createElement('div');
         mediaDetails.classList.add('media-details')
@@ -33,11 +33,16 @@ function galleryFactory(data) {
         likes.textContent = data.likes;
         likesWrapper.appendChild(likes);
 
+        const button = document.createElement('button');
+        button.setAttribute('type', 'button');
+        button.classList.add('media-likes__button');
+        likesWrapper.appendChild(button);
+
         const icon = document.createElement('img');
         icon.setAttribute('src', '/FishEye_code/assets/icons/heart-icon.svg');
         icon.setAttribute('alt', 'Likes');
         icon.classList.add('media-details__icon');
-        likesWrapper.append(icon);
+        button.append(icon);
 
         return (article);
     }
@@ -48,14 +53,13 @@ function galleryFactory(data) {
 
 class Image {
     constructor(data) {
-        this.title = data.title
+        this.title = data.title;
         this.image = data.image;
 
         const imageElement = document.createElement('img');
         imageElement.setAttribute("src", `assets/images/${this.image}`);
         imageElement.setAttribute('alt', this.title);
         imageElement.classList.add('media-grid__image');
-        console.log(imageElement);
         return imageElement;
     }
 }
@@ -66,7 +70,7 @@ class Video {
 
         const videoElement = document.createElement('video');
         videoElement.setAttribute("src", `assets/images/${this.video}`);
-        videoElement.setAttribute('controls', 'controls');
+        //videoElement.setAttribute('controls', 'controls');
         videoElement.classList.add('media-grid__video');
         return videoElement;
     }

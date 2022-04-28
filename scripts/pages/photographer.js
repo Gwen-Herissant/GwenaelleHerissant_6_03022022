@@ -20,30 +20,29 @@ async function getPhotographer(id) {
 
 }
 
-
 async function displayPhotographerDetails(data) {
 
    const photographerSection = document.querySelector('.photograph-header');
    photographerSection.innerHTML = `
-      <div class="photographer-details" aria-label="Détails du photographe">
+   <div class="photographer-details" aria-label="Détails du photographe">
       <h1 class="photographer-details__name">${data.name}</h1>
       <p class="photographer-details__location">${data.city}, ${data.country}</p>
       <p class="photographer-details__tagline">${data.tagline}</p>
     </div>
-    <button class="contact_button" onclick="displayModal()">Contactez-moi</button>
+    <button class="contact_button" role="button" onclick="displayModal()">Contactez-moi</button>
     <img src="assets/photographers/${data.portrait}" alt="${data.name}">
    `
 
    const priceCell = document.querySelector('.price-cell');
    priceCell.innerHTML = `
-      <p class="price-cell__likes price-cell__icon">${data.likes}</p>
+      <p class="price-cell__likes price-cell__icon">${new LikesCounter(data)}</p>
       <p class="price-cell__price">${data.price}€ / jour</p>
    `
 
 }
 
 
-async function displayMedias(media) {
+async function displayMedias(media, data) {
    const mediaSection = document.querySelector('.media-grid');
 
    media.forEach((media) => {
@@ -52,7 +51,7 @@ async function displayMedias(media) {
 
       mediaSection.append(mediaCard);
    });
-
+   Lightbox.lightboxInit(data);
 };
 
 
