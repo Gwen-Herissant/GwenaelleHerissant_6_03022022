@@ -3,21 +3,26 @@ class Lightbox {
   //initialise la lightbox
   static lightboxInit() {
     const mediaElements = Array.from(document.querySelectorAll('a[href$=".jpg"], a[href$=".png"], a[href$=".jpeg"], a[href$=".mp4"]'));
-    const gallery = mediaElements.map(mediaElement => mediaElement.getAttribute('href'));
+    const gallery = [];
 
     mediaElements.forEach(mediaElement => {
+      const mediaObj = {
+        href: mediaElement.getAttribute('href'),
+        title: mediaElement.getAttribute('title'),
+      }
+      gallery.push(mediaObj);
+
       mediaElement.addEventListener('click', (e) => {
         e.preventDefault();
-        new Lightbox(e.currentTarget.getAttribute('href'), gallery);
+        new Lightbox(e.currentTarget.getAttribute('href'), e.currentTarget.getAttribute('title'), gallery);
       });
     });
   }
 
-  constructor(url, data, gallery) {
-    this.element = this.buildLightBox(url);
+  constructor(href, title, gallery) {
+    this.element = this.buildLightBox(href);
     this.gallery = gallery;
-    this.this = data.title;
-    this.loadMediaElement(url);
+    this.loadMediaElement({href, title});
     this.onKeyUp = this.onKeyUp.bind(this);
     document.body.append(this.element);
     document.addEventListener('keyup', this.onKeyUp);
@@ -49,31 +54,35 @@ class Lightbox {
 
   next(e) {
     e.preventDefault();
-    let i = this.gallery.findIndex(i => i === this.url);
-    if(i === this.gallery.length - 1) {
-      i = -1;
+    let position = this.gallery.findIndex(mediaObj => mediaObj.href === this.url);
+    if(position === this.gallery.length - 1) {
+      position = -1;
     }
-    this.loadMediaElement(this.gallery[i + 1]);
+    this.loadMediaElement(this.gallery[position + 1]);
+    
   }
 
   prev(e) {
     e.preventDefault();
-    let i = this.gallery.findIndex(i => i === this.url);
-    if(i === 0) {
-      i = this.gallery.length;
+    let position = this.gallery.findIndex(mediaObj => mediaObj.href === this.url);
+    if(position === 0) {
+      position = this.gallery.length;
     }
-    this.loadMediaElement(this.gallery[i - 1]);
+    this.loadMediaElement(this.gallery[position - 1]);
   }
 
-  loadMediaElement(url) {
+  loadMediaElement(MediaObj) {
     this.url = null;
     const container = this.element.querySelector('.lightbox__container');
+    const text = this.element.querySelector('.lightbox__text');
     container.innerHTML = '';
-    if(url.includes('.mp4') === true) {
-      container.innerHTML = `<video src="${this.url = url}" controls="controls"></video>`;
+    text.innerHTML = '';
+    if(MediaObj.toString().includes('.mp4') === true) {
+      container.innerHTML = `<video src="${this.url = MediaObj.href}" controls="controls"></video>`;
     } else {
-      container.innerHTML = `<img src="${this.url = url}" alt="">`;
+      container.innerHTML = `<img src="${this.url = MediaObj.href}" alt="">`;
     }
+    text.innerHTML = `<p class="lightbox__title">${MediaObj.title}</p>`;
   }
   
   buildLightBox() {
@@ -88,7 +97,7 @@ class Lightbox {
       <a herf="" class="lightbox__next-btn">Image Suivante</a>
       <a herf="" class="lightbox__prev-btn">Image Précédente</a>
       <div class="lightbox__container"></div>
-      <p class="lightbox__text">${this.title}</p>
+      <div class="lightbox__text"></div>
     `;
     lightbox.querySelector('.lightbox__close-btn').addEventListener('click', this.close.bind(this));
     lightbox.querySelector('.lightbox__next-btn').addEventListener('click', this.next.bind(this));
