@@ -37,6 +37,25 @@ function galleryFactory(data) {
         button.setAttribute('type', 'button');
         button.classList.add('media-likes__button');
         likesWrapper.appendChild(button);
+        let hasBeenLiked = false;
+
+        button.addEventListener('click', (e) => {
+            if (hasBeenLiked === false) {
+                hasBeenLiked = true;
+                button.classList.add('liked');
+                let i = data.likes;
+                i++;
+                likes.textContent = i;
+                likesSum++;
+                likesCell.textContent = likesSum;    
+            } else {
+                hasBeenLiked = false
+                button.classList.remove('liked');
+                likes.textContent = data.likes;
+                likesSum--; 
+                likesCell.textContent = likesSum; 
+            }
+        });
 
         const icon = document.createElement('img');
         icon.setAttribute('src', '/FishEye_code/assets/icons/heart-icon.svg');
