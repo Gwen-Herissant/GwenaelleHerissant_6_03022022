@@ -42,6 +42,7 @@
 .price-cell {
   display: flex;
   position: fixed;
+  flex-direction: row-reverse;
   bottom: 0;
   right: 36px;
   background-color: #DB8876;
@@ -218,6 +219,13 @@ form textarea {
 .media-details__icon {
   width: 24px;
   margin-left: 5px;
+  opacity: 0.5;
+  transition: opacity 250ms ease-in-out;
+}
+
+.liked img{
+  opacity: 1;
+  transition: opacity 250ms ease-in-out;
 }
 
 .media-grid article {
@@ -298,4 +306,10 @@ form textarea {
   justify-content: center;
   min-height: 100vh;
   margin: 20px 100px 60px;
+}
+
+.lightbox__title {
+  font-size: 24px;
+  font-weight: 400;
+  color: #901C1C;
 }
