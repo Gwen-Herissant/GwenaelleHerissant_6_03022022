@@ -15,7 +15,7 @@
   <!--Header-->
   <header>
 
-    <img src="assets/images/logo.png" class="logo" alt="Page d'accueil FishEye"/>
+    <a href="index.html"><img src="assets/images/logo.png" class="logo" alt="Page d'accueil FishEye" /></a>
 
   </header>
   <!--Header ends here-->
@@ -42,7 +42,10 @@
     <!--grille d'images du photographe ENDS here-->
 
     <!--cellule nb de likes + tarif/jour (partie JS)-->
-    <div class="price-cell" aria-label="Total de likes et tarif du photographe"></div>
+    <div class="price-cell" aria-label="Total de likes et tarif du photographe">
+      <p class="price-cell__price"></p>
+      <p class="price-cell__likes price-cell__icon"></p>
+    </div>
 
   </main>
   <!--Main Section ends here-->
@@ -92,7 +95,6 @@
   <script src="scripts/pages/photographer.js"></script>
   <script src="scripts/factories/photographer-media.js"></script>
   <script src="scripts/utils/lightbox.js"></script>
-  <script src="scripts/utils/likes-counter.js"></script>
   <script src="https://kit.fontawesome.com/838f6039fd.js" crossorigin="anonymous"></script>
 
 
