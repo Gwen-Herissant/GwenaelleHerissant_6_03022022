@@ -81,19 +81,16 @@ async function removeMediaDisplay(){
 }
 
 async function sortByLikes(media) {
-   likesSum = 0;
    let sortByLikes = media.sort((a,b) => (a.likes > b.likes) ? -1 : ((b.likes > a.likes) ? 1 : 0));
    displayMedias(sortByLikes);
 }
 
 async function sortByDates(media) {
-   likesSum = 0;
    let sortByDates = media.sort((a,b) => (a.date > b.date) ? -1 : ((b.date > a.date) ? 1 : 0));
    displayMedias(sortByDates);
 }
 
 async function sortByTitles(media) {
-   likesSum = 0;
    let sortByTitles = media.sort((a,b) => (a.title > b.title) ? 1 : ((b.title > a.title) ? -1 : 0));
    displayMedias(sortByTitles);
 }
@@ -104,12 +101,15 @@ async function displayMediasByData(media) {
 
    sortByDropDown.addEventListener('change', (e) => {
       if (sortByDropDown.value === 'popularity') {
+         likesSum = 0;
          removeMediaDisplay();
          sortByLikes(media);
       } else if (sortByDropDown.value === 'date') {
+         likesSum = 0;
          removeMediaDisplay();
          sortByDates(media);
       } else if (sortByDropDown.value === 'title') {
+         likesSum = 0;
          removeMediaDisplay();
          sortByTitles(media);
       };
