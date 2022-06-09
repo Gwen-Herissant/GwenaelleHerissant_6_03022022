@@ -16,6 +16,7 @@ function onKeyUp(e) {
     }
 }
 
+
 //ESlint rules:
 /*exported displayModal*/
 /*eslint no-unused-vars: "error"*/
@@ -42,19 +43,7 @@ function closeModal() {
     modal.classList.toggle('contact_modal--open');
     modal.style.display = "none";
 
-    let windowOff;
-
-    //ESlint rule :
-    /*eslint no-unused-vars: "error"*/
-    windowOff
-
-    //refresh page (and form) after submitting or closing modal
-    setTimeout((windowOff = () => {
-        window.location.reload();
-    }), 1000);
-
-    document.removeEventListener('keyup', onKeyUp);
-
+    form.reset();
 }
 
 /**
