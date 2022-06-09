@@ -23,8 +23,8 @@ async function getPhotographer(id) {
 
 
 /**
- * display photographer header (details)
- */
+* display photographer header (details)
+*/
 
 async function displayPhotographerDetails(data) {
 
@@ -46,18 +46,21 @@ async function displayPhotographerDetails(data) {
 
 
 /**
- * display media with media cards created in photographer-media factory
- * add media likes to get total
- * lightbox initialization
- */
+* display media with media cards created in photographer-media factory
+* add media likes to get total
+* lightbox initialization
+*/
 
+/*exported likesCell, likesSum*/
 const likesCell = document.querySelector('.price-cell__likes');
 let likesSum = 0;
+
 
 async function displayMedias(media) {
    const mediaSection = document.querySelector('.media-grid');
 
    media.forEach((media) => {
+      /*global galleryFactory*/
       const mediaModel = galleryFactory(media);
       const mediaCard = mediaModel.mediaCard();
       mediaSection.append(mediaCard);
@@ -67,8 +70,9 @@ async function displayMedias(media) {
 
    likesCell.textContent = likesSum;
 
+   /*global Lightbox*/
    Lightbox.lightboxInit();
-};
+}
 
 
 /**
@@ -99,7 +103,7 @@ async function displayMediasByData(media) {
 
    const sortByDropDown = document.querySelector('#order-by');
 
-   sortByDropDown.addEventListener('change', (e) => {
+   sortByDropDown.addEventListener('change', () => {
       if (sortByDropDown.value === 'popularity') {
          likesSum = 0;
          removeMediaDisplay();
@@ -112,7 +116,7 @@ async function displayMediasByData(media) {
          likesSum = 0;
          removeMediaDisplay();
          sortByTitles(media);
-      };
+      }
    });
 
 }
@@ -129,7 +133,7 @@ async function init() {
    const { photographer, media } = await getPhotographer(id);
    displayPhotographerDetails(photographer);
    displayMediasByData(media);
-};
+}
 
 init();
 

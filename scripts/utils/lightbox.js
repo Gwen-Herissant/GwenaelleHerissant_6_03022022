@@ -1,3 +1,12 @@
+//ESlint rules:
+/*exported Lightbox*/
+/*eslint no-unused-vars: "error"*/
+Lightbox
+
+
+/**
+* Class builing the lightbox
+*/
 class Lightbox {
 
   //initialise la lightbox
@@ -86,6 +95,8 @@ class Lightbox {
   }
   
   buildLightBox() {
+    const main = document.getElementById("main");
+
     main.setAttribute('aria-hidden', 'true');
     const lightbox = document.createElement('div');
     lightbox.classList.add('lightbox');

@@ -1,3 +1,13 @@
+//ESlint rules :
+/*exported photographerFactory*/
+/*eslint no-unused-vars: "error"*/
+photographerFactory
+
+
+/**
+ * Function creating the photographer cards for the homepage
+*/
+
 function photographerFactory(data) {
     // const { name, portrait } = data;
 

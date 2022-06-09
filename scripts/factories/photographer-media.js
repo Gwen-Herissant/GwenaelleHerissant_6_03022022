@@ -1,9 +1,19 @@
+//ESlint rules :
+/*exported galleryFactory*/
+/*eslint no-unused-vars: "error"*/
+galleryFactory
+
+
+/**
+ * Function creating the media cards for the photographer pages
+*/
+
 function galleryFactory(data) {
 
     function mediaCard() {
         const article = document.createElement('article');
 
-        link = document.createElement('a');
+        const link = document.createElement('a');
         link.setAttribute('title', `${data.title}`);
         link.setAttribute('ariaLabel', `${data.title}`);
         link.setAttribute('onclick', 'return false;');
@@ -43,7 +53,8 @@ function galleryFactory(data) {
             data.hasBeenLiked = false;
         }
 
-        button.addEventListener('click', (e) => {
+        /*global likesCell:writable, likesSum:writable*/
+        button.addEventListener('click', () => {
             if (data.hasBeenLiked === false) {
                 data.hasBeenLiked = true;
                 button.classList.add('liked');
@@ -82,6 +93,10 @@ function galleryFactory(data) {
 }
 
 
+
+/**
+ * Classes giving cards the right attributes (img/video)
+*/
 class Image {
     constructor(data) {
         this.title = data.title;
@@ -106,6 +121,11 @@ class Video {
         return videoElement;
     }
 }
+
+
+/**
+ * Class sorting medias and deciding if they are img or video
+*/
 
 class MediaFactory {
     constructor(data) {

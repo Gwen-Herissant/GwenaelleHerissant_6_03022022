@@ -2,8 +2,6 @@
 const main = document.getElementById("main");
 const form = document.getElementById("form");
 const modal = document.getElementById("contact_modal");
-const contactBtn = document.getElementsByClassName('contact_button');
-const closeBtn = document.getElementsByClassName('close_button');
 const firstName = document.getElementById("prénom");
 const lastName = document.getElementById("nom");
 const email = document.getElementById("email");
@@ -18,6 +16,15 @@ function onKeyUp(e) {
     }
 }
 
+//ESlint rules:
+/*exported displayModal*/
+/*eslint no-unused-vars: "error"*/
+displayModal
+
+
+/**
+* function for opening the modal
+*/
 function displayModal() {
     main.setAttribute('aria-hidden', 'true');
     modal.setAttribute('aria-hidden', 'false');
@@ -25,13 +32,23 @@ function displayModal() {
 	modal.style.display = "block";
 }
 
-function closeModal(e) {
+
+/**
+* function for closing the modal
+*/
+function closeModal() {
     main.setAttribute('aria-hidden', 'flase');
     modal.setAttribute('aria-hidden', 'true');
     modal.classList.toggle('contact_modal--open');
     modal.style.display = "none";
 
-    // refresh page (and form) after submitting or closing modal
+    //let windowOff;
+
+    //ESlint rule :
+    /*eslint no-unused-vars: "error"*/
+    //windowOff
+
+    //refresh page (and form) after submitting or closing modal
     // setTimeout((windowOff = () => {
     //     window.location.reload();
     // }), 1000);
@@ -40,19 +57,24 @@ function closeModal(e) {
 
 }
 
-//error style change 
+/**
+* function changing input style upon error
+*/
 function showErrorBorder(input) {
   input.style.border = '2px solid #e54858';
 }
 
-//show validation
+/**
+* function changing input style upon validation
+*/
 function showValidation(input) {
   input.style.border = '2px solid #279e7a';
   input.classList.add('isValid');
-};
+}
 
-
-//prevent from submitting and run input validation
+/**
+* function preventing form submit and starts input validation
+*/
 form.addEventListener('submit', (e) => {
   e.preventDefault();
 
@@ -61,7 +83,9 @@ form.addEventListener('submit', (e) => {
 })
 
 
-//inputs validation
+/**
+* function validating the inputs
+*/
 function checkInputs() {
 
     const firstNameValue = firstName.value.trim();
@@ -99,13 +123,17 @@ function checkInputs() {
 }
 
 
-//regex validation for email
+/**
+* regex validation for email
+*/
 function isEmailValid(email) {
-  return /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,})+$/.test(email);
+  return /^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/.test(email);
 }
 
 
-//check that all inputs are valid before submitting
+/**
+* function checking that all inputs are valid before submitting
+*/
 function isFormValid() {
   if (
     firstName.classList.contains('isValid') &&
