@@ -1,9 +1,3 @@
-//ESlint rules:
-/*exported Lightbox*/
-/*eslint no-unused-vars: "error"*/
-Lightbox
-
-
 /**
 * Class builing the lightbox
 */
@@ -80,18 +74,19 @@ class Lightbox {
     this.loadMediaElement(this.gallery[position - 1]);
   }
 
-  loadMediaElement(MediaObj) {
+  loadMediaElement(mediaObj) {
     this.url = null;
     const container = this.element.querySelector('.lightbox__container');
     const text = this.element.querySelector('.lightbox__text');
     container.innerHTML = '';
     text.innerHTML = '';
-    if(MediaObj.toString().includes('.mp4') === true) {
-      container.innerHTML = `<video src="${this.url = MediaObj.href}" controls="controls"></video>`;
+    console.log(mediaObj);
+    if(mediaObj.href.includes('.mp4') === true) {
+      container.innerHTML = `<video src="${this.url = mediaObj.href}" controls="controls"></video>`;
     } else {
-      container.innerHTML = `<img src="${this.url = MediaObj.href}" alt="">`;
+      container.innerHTML = `<img src="${this.url = mediaObj.href}" alt="">`;
     }
-    text.innerHTML = `<p class="lightbox__title">${MediaObj.title}</p>`;
+    text.innerHTML = `<p class="lightbox__title">${mediaObj.title}</p>`;
   }
   
   buildLightBox() {
