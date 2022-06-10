@@ -132,7 +132,29 @@ function isFormValid() {
   ) {
     console.log('all inputs are valid !')
     
+    onFormSubmit();
     //close modal after submission
     closeModal();
   }
+}
+
+
+function onFormSubmit() {
+    const firstNameValue = firstName.value;
+    console.log('Prénom : ' + firstNameValue);
+    const lastNameValue = lastName.value;
+    console.log('Nom : ' + lastNameValue);
+    const emailValue = email.value;
+    console.log('Email : ' + emailValue);
+    const messageValue = message.value;
+    console.log('Message : ' + messageValue);
+
+    let windowOff;
+
+    /*eslint no-unused-vars: "error"*/
+    windowOff
+
+    setTimeout((windowOff = () => {
+        window.location.reload();
+    }), 5000);
 }
