@@ -96,6 +96,7 @@ class Lightbox {
     const lightbox = document.createElement('div');
     lightbox.classList.add('lightbox');
     lightbox.setAttribute('aria-hidden', 'false');
+    lightbox.setAttribute('aria-modal', 'true');
     lightbox.setAttribute('role', 'dialog');
     lightbox.setAttribute('aria-label', 'image closeup view');
     lightbox.innerHTML = `
@@ -108,6 +109,8 @@ class Lightbox {
     lightbox.querySelector('.lightbox__close-btn').addEventListener('click', this.close.bind(this));
     lightbox.querySelector('.lightbox__next-btn').addEventListener('click', this.next.bind(this));
     lightbox.querySelector('.lightbox__prev-btn').addEventListener('click', this.prev.bind(this));
+
+    setTimeout(() => lightbox.focus(), 1);
 
     return lightbox;
   }

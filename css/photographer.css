@@ -193,6 +193,11 @@ form textarea {
   margin: 100px;
 }
 
+.media-grid a {
+  display: block;
+  width: 100%;
+}
+
 .media-details {
   display: flex;
   justify-content: space-between;

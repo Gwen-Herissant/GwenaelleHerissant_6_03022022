@@ -116,6 +116,7 @@ class Video {
 
         const videoElement = document.createElement('video');
         videoElement.setAttribute("src", `assets/images/${this.video}`);
+        videoElement.setAttribute("tabindex", "-1");
         //videoElement.setAttribute('controls', 'controls');
         videoElement.classList.add('media-grid__video');
         return videoElement;

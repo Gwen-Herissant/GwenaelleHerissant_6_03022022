@@ -31,6 +31,8 @@ function displayModal() {
     modal.setAttribute('aria-hidden', 'false');
     modal.classList.add('contact_modal--open');
 	modal.style.display = "block";
+
+    setTimeout(() => modal.focus(), 1);
 }
 
 
@@ -39,6 +41,7 @@ function displayModal() {
 */
 function closeModal() {
     main.setAttribute('aria-hidden', 'flase');
+    main.setAttribute('aria-disabled', 'false');
     modal.setAttribute('aria-hidden', 'true');
     modal.classList.toggle('contact_modal--open');
     modal.style.display = "none";
