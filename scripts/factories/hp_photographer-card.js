@@ -16,11 +16,11 @@ function photographerFactory(data) {
     function getUserCardDOM() {
         //creates article
         const article = document.createElement( 'article' );
+        article.setAttribute('role', 'article');
         //link
         const link = document.createElement('a');
         link.setAttribute('title', data.name);
         link.setAttribute('ariaLabel', data.name);
-        link.setAttribute('tabindex', 0);  //set focus ?        
         link.setAttribute('href', `./photographer.html?id=${data.id}`);
         article.appendChild(link);
         //portrait
