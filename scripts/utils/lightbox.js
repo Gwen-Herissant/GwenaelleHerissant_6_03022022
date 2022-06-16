@@ -80,7 +80,6 @@ class Lightbox {
     const text = this.element.querySelector('.lightbox__text');
     container.innerHTML = '';
     text.innerHTML = '';
-    console.log(mediaObj);
     if(mediaObj.href.includes('.mp4') === true) {
       container.innerHTML = `<video src="${this.url = mediaObj.href}" controls="controls"></video>`;
     } else {
