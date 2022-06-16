@@ -99,6 +99,7 @@ class Lightbox {
     lightbox.setAttribute('aria-modal', 'true');
     lightbox.setAttribute('role', 'dialog');
     lightbox.setAttribute('aria-label', 'image closeup view');
+    lightbox.setAttribute('tabindex', '0');
     lightbox.innerHTML = `
       <button class="lightbox__close-btn">Fermer</button>
       <a herf="" class="lightbox__next-btn">Image Suivante</a>
