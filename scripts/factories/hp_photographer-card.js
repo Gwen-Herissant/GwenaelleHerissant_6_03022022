@@ -22,6 +22,7 @@ function photographerFactory(data) {
         link.setAttribute('title', data.name);
         link.setAttribute('ariaLabel', data.name);
         link.setAttribute('href', `./photographer.html?id=${data.id}`);
+        link.setAttribute('target', '_blank');
         article.appendChild(link);
         //portrait
         const img = document.createElement( 'img' );
