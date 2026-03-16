@@ -263,7 +263,7 @@ form textarea {
 .lightbox__prev-btn {
   position: fixed;
   cursor: pointer;
-  background-image: url(/assets/icons/arrow.svg);
+  background-image: url(../assets/icons/arrow.svg);
   background-position: center;
   background-repeat: no-repeat;
   background-size: 24px 42px;
@@ -285,7 +285,7 @@ form textarea {
 .lightbox__close-btn {
   position: fixed;
   cursor: pointer;
-  background-image: url(/assets/icons/cross.svg);
+  background-image: url(../assets/icons/cross.svg);
   background-position: center;
   background-repeat: no-repeat;
   background-size: 100%;
