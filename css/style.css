@@ -60,6 +60,7 @@ h1 {
 .photograph-header img {
   height: 200px;
   width: 200px;
+  object-fit: cover;
   border-radius: 50%;
   box-shadow: 1px 1px 10px #d5d5d5c7;
 }
