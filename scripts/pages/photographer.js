@@ -1,6 +1,6 @@
 async function getPhotographer(id) {
 
-   let response = await fetch('/FishEye_code/data/photographers.json');
+   let response = await fetch('./data/photographers.json');
    let json;
 
    if (response.ok) { 

@@ -81,7 +81,7 @@ function galleryFactory(data) {
         }
 
         const icon = document.createElement('img');
-        icon.setAttribute('src', '/FishEye_code/assets/icons/heart-icon.svg');
+        icon.setAttribute('src', './assets/icons/heart-icon.svg');
         icon.setAttribute('alt', 'Likes');
         icon.classList.add('media-details__icon');
         button.append(icon);
