@@ -2,6 +2,8 @@
 
 A modular, accessible web application for an artist platform, built with Vanilla JavaScript and design patterns, as part of a front-end development training program.
 
+🔗 **[Live Demo](https://gwen-herissant.github.io/GwenaelleHerissant_6_03022022/)**
+
 ## Project Overview
 
 This project was completed as part of a structured front-end development curriculum. The goal was to build a functional prototype of a photographer portfolio platform, starting from a provided codebase, Figma mockups, and JSON data.
